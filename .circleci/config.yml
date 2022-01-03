@@ -18,6 +18,9 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
+      - run:
+          name: "What is the debug?"
+          command: echo ${DEBUG}
       - eb/setup
       - run:
           command: |
