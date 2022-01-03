@@ -7,18 +7,18 @@ jobs:
   build-and-deploy:
     docker:
       - image: cimg/python:3.8
-    steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-      - eb/setup
-      - environment:
+        environment:
           SECRET_KEY: echo ${SECRET_KEY}
           DEBUG: echo ${DEBUG}
           DB_NAME: echo ${DB_NAME}
           DB_USER: echo ${DB_USER}
           DB_PASSWORD: echo ${DB_PASSWORD}
           DB_HOST: echo ${DB_HOST}
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - eb/setup
       - run:
           command: |
             python -m venv ~/eb-virt
