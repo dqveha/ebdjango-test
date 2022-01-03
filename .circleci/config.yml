@@ -7,31 +7,18 @@ jobs:
   build-and-deploy:
     docker:
       - image: cimg/python:3.8
-        environment:
-          SECRET_KEY: echo ${SECRET_KEY}
-          DEBUG: echo ${DEBUG}
-          DB_NAME: echo ${DB_NAME}
-          DB_USER: echo ${DB_USER}
-          DB_PASSWORD: echo ${DB_PASSWORD}
-          DB_HOST: echo ${DB_HOST}
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
       - run:
-          name: "What is the debug?"
-          command: echo ${DEBUG}
+          name: "What is the user?"
+          command: echo ${DB_USER}
       - eb/setup
       - run:
           command: |
             python -m venv ~/eb-virt
             source ~/eb-virt/bin/activate
-            echo "export SECRET_KEY=${SECRET_KEY}" >> .env
-            echo "export DEBUG=${DEBUG}" >> .env
-            echo "export DB_NAME=${DB_NAME}" >> .env
-            echo "export DB_USER=${DB_USER}" >> .env
-            echo "export DB_PASSWORD=${DB_PASSWORD}" >> .env
-            echo "export DB_HOST=${DB_HOST}" >> .env
             eb init -p python-3.8 python-django
             eb deploy django-env
             eb status
