@@ -24,8 +24,7 @@ jobs:
           command: |
             python -m venv ~/eb-virt
             source ~/eb-virt/bin/activate
-            # eb init -p python-3.8 python-django
-            # eb create django-env
+            eb init -p python-3.8 python-django
             eb deploy django-env
             eb status
           name: Deploying and checking status
