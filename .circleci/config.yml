@@ -1,0 +1,37 @@
+version: 2.1
+orbs: 
+  python: circleci/python@1.2
+  eb: circleci/aws-elastic-beanstalk@2.0.1
+
+jobs:
+  build-and-deploy:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - restore_cache:
+          key: awseb
+          paths:
+            - /tmp/aws
+      - eb/setup
+      - save_cache:
+          key: awseb
+          paths:
+            - /tmp/aws
+      - run:
+          command: |
+            python -m venv ~/eb-virt
+            source ~/eb-virt/bin/activate
+            eb init -p python-3.8 python-django
+            eb create django-env
+            eb deploy django-env
+            eb status
+          name: Deploying and checking status
+
+workflows:
+  workflow1:
+    jobs:
+      - build-and-deploy
+      
