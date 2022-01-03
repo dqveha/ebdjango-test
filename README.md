@@ -1,5 +1,6 @@
 Create a options.config file under .ebextensions with following template:
 
+```
 option_settings:
   aws:elasticbeanstalk:application:environment:
     SECRET_KEY: 
@@ -8,3 +9,4 @@ option_settings:
     DB_USER: 
     DB_PASSWORD:
     DB_HOST: 
+```
