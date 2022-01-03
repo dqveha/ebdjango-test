@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Meetups</title>
+  <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+</head>
+<body>
+  <h1> It works </h1>
+  <p> Doesnt it?</p>
+{% if show_meetups %}
+{% for meetup in meetups %}
+  <h2>{{ meetup.title }}</h2>
+  <p>{{ meetup.description }}</p>
+  <p>{{ meetup.slug }}</p>
+  <p>{{ meetup.email }}</p>
+
+  <!-- <p>{{ meetup.email }}</p> -->
+{% endfor %}
+{% else %}
+  <h2>No meetups found!</h2>
+{% endif %}
+</body>
+</html>
