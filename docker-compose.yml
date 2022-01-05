@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    ports:
+      - '3307:3308'
+  web:
+    build: .
+    environment:
+      SECRET_KEY: "${SECRET_KEY}"
+      DEBUG: "${DEBUG}"
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_ROOT_PASSWORD: "${DB_PASSWORD}"
+      DB_HOST: "${DB_HOST}"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/my_app_dir
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

@@ -24,7 +24,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 # ALLOWED_HOSTS = ['django-env.eba-ppeau3vz.us-west-2.elasticbeanstalk.com']
-ALLOWED_HOSTS = ['django-env.eba-mce25pen.us-west-2.elasticbeanstalk.com']
+# ALLOWED_HOSTS = ['django-env.eba-mce25pen.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -73,12 +74,6 @@ WSGI_APPLICATION = 'ebdjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -90,18 +85,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('PASSWORD'),
-#         'HOST': config('DB_HOST'),
-#         'PORT': '3306',
-#     }
-# }
 
 
 # Password validation
